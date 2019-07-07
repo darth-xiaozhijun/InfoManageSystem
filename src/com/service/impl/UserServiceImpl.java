@@ -15,6 +15,9 @@ public class UserServiceImpl implements UserService{
 	//声明Dao层对象
 	UserDao ud=new UserDaoImpl();
 
+	/**
+	 * 用户登录
+	 */
 	@Override
 	public User checkUserLoginService(String uname, String pwd) {
 		
@@ -28,6 +31,14 @@ public class UserServiceImpl implements UserService{
 			logger.debug(uname+"登录失败");
 		}
 		return u;
+	}
+
+	/**
+	 * 用户注册
+	 */
+	@Override
+	public int userRegService(User u) {
+		return ud.userRegDao(u);
 	}
 
 }

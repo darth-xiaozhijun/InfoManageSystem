@@ -11,4 +11,11 @@ public interface UserDao {
 	 * @return 返回查询到的用户信息
 	 */
 	User checkUserLoginDao(String uname,String pwd);
+	
+	/**
+	 * 用户注册
+	 * @param u
+	 * @return
+	 */
+	int userRegDao(User u);
 }

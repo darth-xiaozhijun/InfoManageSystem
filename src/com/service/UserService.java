@@ -11,4 +11,11 @@ public interface UserService {
 	 * @return	返回查询到的用户信息
 	 */
 	User checkUserLoginService(String uname,String pwd);
+	
+	/**
+	 * 用户注册
+	 * @param u
+	 * @return
+	 */
+	int userRegService(User u);
 }
