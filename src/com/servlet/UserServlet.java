@@ -15,7 +15,15 @@ import com.service.UserService;
 import com.service.impl.UserServiceImpl;
 
 /**
- * Servlet implementation class UserServlet
+ * Servlet重定向路径总结：
+ * 	相对路径：从当前请求的路径查找资源的路径
+ * 		相对路径如果servlet的别名中包含目录，会造成重定向资源查找失败。
+ * 	绝对路径：第一个/表示服务器根目录
+ * 		/虚拟项目名/资源路径
+ * 
+ * Servlet请求转发：
+ * 		/表示项目根目录。
+ * 		req.getRequestDispatcher("/资源路径").forward(req, resp);
  */
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
@@ -64,7 +72,7 @@ public class UserServlet extends HttpServlet {
 				//将用户数据存储到session中
 				hs.setAttribute("user", u);
 				//重定向
-				resp.sendRedirect("/mg/main/main.jsp");
+				resp.sendRedirect("/InfoManageSystem/main/main.jsp");
 				return;
 			}else{
 				//添加标识符到request中
@@ -107,7 +115,7 @@ public class UserServlet extends HttpServlet {
 				HttpSession hs=req.getSession();
 				hs.setAttribute("reg", "true");
 				//重定向
-				resp.sendRedirect("/mg/login.jsp");
+				resp.sendRedirect("/InfoManageSystem/login.jsp");
 			}
 		
 	}
