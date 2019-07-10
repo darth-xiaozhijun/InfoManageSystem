@@ -46,6 +46,9 @@ public class UserServlet extends HttpServlet {
 		if("login".equals(oper)){
 			//调用登录处理方法
 			checkUserLogin(req,resp);
+		}else if("out".equals(oper)){
+			//调用退出功能
+			userOut(req,resp);
 		}else if("reg".equals(oper)){
 			//调用注册功能
 			userReg(req,resp);
@@ -86,6 +89,16 @@ public class UserServlet extends HttpServlet {
 			//请求转发
 	}
 	
+	//用户退出
+	private void userOut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		//获取session对象
+		HttpSession hs=req.getSession();
+		//强制销毁session
+		hs.invalidate();
+		//重定向到登录页面
+		resp.sendRedirect("/InfoManageSystem/login.jsp");
+	}
+	
 	/**
 	 * 注册用户
 	 * @param req
@@ -117,6 +130,5 @@ public class UserServlet extends HttpServlet {
 				//重定向
 				resp.sendRedirect("/InfoManageSystem/login.jsp");
 			}
-		
 	}
 }
