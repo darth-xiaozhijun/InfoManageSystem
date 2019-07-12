@@ -126,4 +126,48 @@ public class UserDaoImpl implements UserDao{
 		//返回结果
 		return index;
 	}
+
+	/**
+	 * 根据用户ID修改用户密码
+	 */
+	@Override
+	public int userChangePwdDao(String newPwd, int uid) {
+		//声明jdbc对象
+		Connection conn=null;
+		PreparedStatement ps=null;
+		//创建变量
+		int index=-1;
+		try {
+			//加载驱动
+			Class.forName("com.mysql.jdbc.Driver");
+			//获取连接
+			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/info_manage_system","root", "123456");
+			//创建SQL命令
+			String sql="update t_user set pwd=? where uid=?";
+			//创建SQL命令对象
+			ps=conn.prepareStatement(sql);
+			//给占位符赋值
+			ps.setString(1, newPwd);
+			ps.setInt(2, uid);
+			//执行
+			index=ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{//关闭资源
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//返回结果
+		return index;
+	}
 }

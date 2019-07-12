@@ -18,4 +18,12 @@ public interface UserService {
 	 * @return
 	 */
 	int userRegService(User u);
+
+	/**
+	 * 用户修改密码
+	 * @param newPwd
+	 * @param uid
+	 * @return
+	 */
+	int userChangePwdService(String newPwd, int uid);
 }

@@ -41,4 +41,19 @@ public class UserServiceImpl implements UserService{
 		return ud.userRegDao(u);
 	}
 
+	/**
+	 * 用户修改密码
+	 */
+	@Override
+	public int userChangePwdService(String newPwd, int uid) {
+		logger.debug(uid+":发起密码请求");
+		int index=ud.userChangePwdDao(newPwd,uid);
+		if(index>0){
+			logger.debug(uid+":密码修改成功");
+		}else{
+			logger.debug(uid+":密码修改失败");
+		}
+		return index;
+	}
+
 }

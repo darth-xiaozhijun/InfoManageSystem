@@ -18,4 +18,12 @@ public interface UserDao {
 	 * @return
 	 */
 	int userRegDao(User u);
+
+	/**
+	 * 用户修改密码
+	 * @param newPwd
+	 * @param uid
+	 * @return
+	 */
+	int userChangePwdDao(String newPwd, int uid);
 }

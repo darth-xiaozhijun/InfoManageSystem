@@ -49,11 +49,38 @@ public class UserServlet extends HttpServlet {
 		}else if("out".equals(oper)){
 			//调用退出功能
 			userOut(req,resp);
+		}else if("pwd".equals(oper)){
+			//调用密码修改功能
+			userChangePwd(req,resp);
 		}else if("reg".equals(oper)){
 			//调用注册功能
 			userReg(req,resp);
 		}else{
 			logger.debug("没有找到对应的操作符："+oper);
+		}
+	}
+
+	/**
+	 * 用户修改密码
+	 * @param req
+	 * @param resp
+	 * @throws IOException 
+	 */
+	private void userChangePwd(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		//获取数据
+		String newPwd=req.getParameter("newPwd");
+		//从session中获取用户信息
+		User u=(User)req.getSession().getAttribute("user");
+		int uid=u.getUid();
+	//处理请求
+		//调用service处理
+		int index=us.userChangePwdService(newPwd,uid);
+		if(index>0){
+			//获取session对象
+			HttpSession hs=req.getSession();
+			hs.setAttribute("pwd","true");
+			//重定向到登录页面
+			resp.sendRedirect("/InfoManageSystem/login.jsp");
 		}
 	}
 
