@@ -1,6 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,12 +54,37 @@ public class UserServlet extends HttpServlet {
 		}else if("pwd".equals(oper)){
 			//调用密码修改功能
 			userChangePwd(req,resp);
+		}else if("show".equals(oper)){
+			//调用显示所有用户功能
+			userShow(req,resp);
 		}else if("reg".equals(oper)){
 			//调用注册功能
 			userReg(req,resp);
 		}else{
 			logger.debug("没有找到对应的操作符："+oper);
 		}
+	}
+
+	/**
+	 * 显示所有的用户信息
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void userShow(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//处理请求
+			//调用service
+			List<User> lu=us.userShowService();
+			//判断
+			if(lu!=null){
+				//将查询的用户数据存储到request对象
+				req.setAttribute("lu",lu);
+				//请求转发
+				req.getRequestDispatcher("/user/showUser.jsp").forward(req, resp);
+				return;
+			}
+		
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package com.service.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.dao.UserDao;
@@ -54,6 +56,16 @@ public class UserServiceImpl implements UserService{
 			logger.debug(uid+":密码修改失败");
 		}
 		return index;
+	}
+
+	/**
+	 * 显示所有的用户信息
+	 */
+	@Override
+	public List<User> userShowService() {
+		List<User> lu=ud.userShowDao();
+		logger.debug("显示所有用户信息："+lu);
+		return lu;
 	}
 
 }

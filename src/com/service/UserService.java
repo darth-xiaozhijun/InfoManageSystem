@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import com.pojo.User;
 
 public interface UserService {
@@ -26,4 +28,10 @@ public interface UserService {
 	 * @return
 	 */
 	int userChangePwdService(String newPwd, int uid);
+
+	/**
+	 * 显示所有的用户信息
+	 * @return
+	 */
+	List<User> userShowService();
 }
