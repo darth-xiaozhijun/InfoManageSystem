@@ -62,7 +62,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%}
     	session.removeAttribute("pwd");
     %>
-    
+    <%
+    	//声明java代码块进行注册提示语
+    	Object reg=session.getAttribute("reg");
+    	if(reg!=null){
+    %>
+	    <div style="text-align: center;">
+	     <span style="font-size: 15px;color:darkred;font-weight: bold;">注册成功</span>
+	    </div>
+    <%}
+    	session.removeAttribute("reg");
+    %>
     <div class="loginbox loginbox1">
     <form action="user" method="post">
     	<input type="hidden" name="oper" value="login" />
