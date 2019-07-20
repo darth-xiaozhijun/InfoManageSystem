@@ -47,7 +47,7 @@ $(function(){
     </ul>
      
     <div class="user">
-    <span><%=((User)session.getAttribute("user")).getUname()%></span>
+    <span>${user.uname }</span>
     </div>    
     
     </div>

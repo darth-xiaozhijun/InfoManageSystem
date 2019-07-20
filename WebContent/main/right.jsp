@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*,com.pojo.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -30,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <div class="welinfo">
     <span><img src="images/sun.png" alt="天气" /></span>
-    <b><%=((User)session.getAttribute("user")).getUname()%>早上好，欢迎使用信息管理系统</b>(<%=((User)session.getAttribute("user")).getUname()%>@uimaker.com)
+    <b>${ user.uname }早上好，欢迎使用信息管理系统</b>(${ user.uname }@uimaker.com)
     <a href="#">帐号设置</a>
     </div>
     

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -42,37 +43,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <span class="systemlogo"></span> 
     <br />
-    <%
-    	//声明java代码块进行错误提示语的逻辑校验
-    	Object obj=request.getAttribute("flag");
-    	if(obj!=null){
-    %>
-	    <div style="text-align: center;">
+    <c:if test="${ flag != null }">
+    	<div style="text-align: center;">
 	     <span style="font-size: 15px;color:darkred;font-weight: bold;">用户名或者密码错误</span>
 	    </div>
-    <%} %>
-   <%
-    	//声明java代码块进行密码修改提示语
-    	Object pwd=session.getAttribute("pwd");
-    	if(pwd!=null){
-    %>
-	    <div style="text-align: center;">
+    </c:if>
+    <c:if test="${ pwd != null }">
+    	<div style="text-align: center;">
 	     <span style="font-size: 15px;color:darkred;font-weight: bold;">密码修改成功</span>
 	    </div>
-    <%}
-    	session.removeAttribute("pwd");
-    %>
-    <%
-    	//声明java代码块进行注册提示语
-    	Object reg=session.getAttribute("reg");
-    	if(reg!=null){
-    %>
-	    <div style="text-align: center;">
+    </c:if>
+    <c:if test="${ reg != null }">
+    	<div style="text-align: center;">
 	     <span style="font-size: 15px;color:darkred;font-weight: bold;">注册成功</span>
 	    </div>
-    <%}
-    	session.removeAttribute("reg");
-    %>
+    </c:if>
+    <c:remove var="flag" />
+    <c:remove var="pwd" />
+    <c:remove var="reg" />
     <div class="loginbox loginbox1">
     <form action="user" method="post">
     	<input type="hidden" name="oper" value="login" />

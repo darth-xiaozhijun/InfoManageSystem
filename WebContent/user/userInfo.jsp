@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*,com.pojo.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -65,19 +66,12 @@ $(document).ready(function(){
         </thead>
         <tbody>
         <tr>
-        <td><%=((User)session.getAttribute("user")).getUid() %></td>
-        <td><%=((User)session.getAttribute("user")).getUname() %></td>
-        <td><%=((User)session.getAttribute("user")).getPwd() %></td>
-        <%
-        	String sex=((User)session.getAttribute("user")).getSex();
-        	if("1".equals(sex)){
-        %>
-        <td>男</td>
-        <%}else{ %>
-        <td>女</td>
-        <%}%>
-        <td><%=((User)session.getAttribute("user")).getAge() %></td>
-        <td><%=((User)session.getAttribute("user")).getBirth() %></td>
+        	<td>${ user.uid }</td>
+	        <td>${ user.uname }</td>
+	        <td>${ user.pwd }</td>
+	        <td>${ user.sex == 1 ? '男' : '女' }</td>
+	        <td>${ user.age }</td>
+	        <td>${ user.birth }</td>
         </tr> 
         </tbody>
     </table>
